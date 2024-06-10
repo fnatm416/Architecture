@@ -15,5 +15,4 @@ public class CostumeData
 {
     public CostumeType type;
     public SkinnedMeshRenderer mesh;
-    public Material material;
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum WeaponType
 {
+    None,
     ShortSword,
     DualSword,
     LargeSword
@@ -12,7 +13,6 @@ public enum WeaponType
 [System.Serializable]
 public class WeaponData
 {
-    //public string name;
     public WeaponType type;
     public GameObject prefab;
 }

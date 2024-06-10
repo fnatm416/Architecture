@@ -15,8 +15,6 @@ public class PlayerStats : MonoBehaviour
     public void Init(PlayerData data)
     {
         // 초기화 작업
-        weaponType = data.weapon.type;
-
         currentHealth = maxHealth;
         currentStemina = maxStemina;
     }
