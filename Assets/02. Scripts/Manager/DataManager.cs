@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
@@ -32,7 +34,9 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
-    public PlayerData data = new PlayerData();
+    public PlayerData playerData = new PlayerData();
+
+    public PlayerAvatar playerAvatar;
 
     void Awake()
     {
@@ -46,15 +50,39 @@ public class DataManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        Initialize();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void Start()
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        Init();
+        playerAvatar = FindObjectOfType<PlayerAvatar>();
+        playerAvatar.Initialize();
     }
 
-    private void Init()
+    #region Methods
+    public void Initialize()
     {
-        data.Init();
-    }    
+        // 코스튬 정보 초기화 작업
+        for (int i = 0; i < Enum.GetValues(typeof(CostumeType)).Length; i++)
+        {
+            // enum타입을 순회하여 각 타입별로 원소를 추가
+            var type = (CostumeType)Enum.ToObject(typeof(CostumeType), i);
+            playerData.costumeDatas.Add(type, 0);
+        }
+    }
+
+    public int GetCostumeData(CostumeType type)
+    {
+        // 현재 코스튬을 가져오기
+        return playerData.costumeDatas[type];
+    }
+
+    public void SetCostumeData(CostumeData data)
+    {
+        // 코스튬을 세팅하기
+        playerData.costumeDatas[data.type] = data.index;
+    }
+    #endregion
 }
