@@ -6,31 +6,47 @@ using Photon.Pun;
 public class PlayerAvatar : MonoBehaviour
 {
     // 스킨 목록
-    public SkinnedMeshRenderer head;
-    public SkinnedMeshRenderer upper;
-    public SkinnedMeshRenderer lower;
-    public SkinnedMeshRenderer foot;
+    public Transform headTf;
+    public Transform faceTf;
+    public Transform upperTf;
+    public Transform lowerTf;
+    public Transform footTf;
 
-    public void SetCostume(CostumeData data)
+    private GameObject currentHead;
+    private GameObject currentFace;
+    private GameObject currentUpper;
+    private GameObject currentLower;
+    private GameObject currentFoot;
+
+    public void SwitchCostume(CostumeData data)
     {
         // 코스튬 변경
         switch (data.type)
         {
             case CostumeType.Head:
-                head.sharedMesh = data.mesh.sharedMesh;
-                head.material = data.mesh.material;
+                currentHead.SetActive(false);
+                currentHead = headTf.GetChild(data.index).gameObject;
+                currentHead.SetActive(true);
+                break;
+            case CostumeType.Face:
+                currentFace.SetActive(false);
+                currentFace = faceTf.GetChild(data.index).gameObject;
+                currentFace.SetActive(true);
                 break;
             case CostumeType.Upper:
-                upper.sharedMesh = data.mesh.sharedMesh;
-                upper.material = data.mesh.material;
+                currentUpper.SetActive(false);
+                currentUpper = upperTf.GetChild(data.index).gameObject;
+                currentUpper.SetActive(true);
                 break;
             case CostumeType.Lower:
-                lower.sharedMesh = data.mesh.sharedMesh;
-                lower.material = data.mesh.material;
+                currentLower.SetActive(false);
+                currentLower = lowerTf.GetChild(data.index).gameObject;
+                currentLower.SetActive(true);
                 break;
             case CostumeType.Foot:
-                foot.sharedMesh = data.mesh.sharedMesh;
-                foot.material = data.mesh.material;
+                currentFoot.SetActive(false);
+                currentFoot = footTf.GetChild(data.index).gameObject;
+                currentFoot.SetActive(true);
                 break;
         }
     }

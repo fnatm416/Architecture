@@ -5,6 +5,7 @@ using UnityEngine;
 public enum CostumeType
 {
     Head,
+    Face,
     Upper,
     Lower,
     Foot
@@ -14,5 +15,5 @@ public enum CostumeType
 public class CostumeData
 {
     public CostumeType type;
-    public SkinnedMeshRenderer mesh;
+    public int index;
 }

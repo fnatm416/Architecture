@@ -14,5 +14,5 @@ public enum WeaponType
 public class WeaponData
 {
     public WeaponType type;
-    public GameObject prefab;
+    public int index;
 }

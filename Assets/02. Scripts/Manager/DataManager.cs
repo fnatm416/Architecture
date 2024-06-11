@@ -32,8 +32,7 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
-    public List<CostumeData> costumes;
-    public PlayerData data;
+    public PlayerData data = new PlayerData();
 
     void Awake()
     {
@@ -48,4 +47,14 @@ public class DataManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        data.Init();
+    }    
 }
